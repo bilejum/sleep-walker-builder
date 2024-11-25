@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=4 uid="uid://bmkr237jnqcwe"]
+
+[ext_resource type="Script" path="res://Scenes/BlockItem/block_item.gd" id="1_dklmc"]
+[ext_resource type="TileSet" uid="uid://ct1sar53osgk1" path="res://Resources/Level_TileMap.tres" id="1_qphc4"]
+
+[node name="BlockItem" type="Node2D"]
+script = ExtResource("1_dklmc")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-28, -18)
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAMAAAABAAAAAgABAAMAAAACAAAAAgACAAMAAAAAAAEAAgAAAAUAAAABAAEAAgABAAUAAAACAAEAAgACAAUAAAA=")
+tile_set = ExtResource("1_qphc4")
+collision_enabled = false

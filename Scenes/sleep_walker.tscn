@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjgjad8wi8r0s"]
+
+[ext_resource type="Script" path="res://Scenes/sleep_walker.gd" id="1_1tg3j"]
+[ext_resource type="Texture2D" uid="uid://bas6rj1jq7d0q" path="res://Assets/Character.png" id="1_56c0g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36rep"]
+atlas = ExtResource("1_56c0g")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voo7o"]
+atlas = ExtResource("1_56c0g")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g46wa"]
+atlas = ExtResource("1_56c0g")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7onxp"]
+atlas = ExtResource("1_56c0g")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pi0mw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36rep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voo7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g46wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7onxp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihf1j"]
+
+[node name="SleepWalker" type="CharacterBody2D"]
+script = ExtResource("1_1tg3j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pi0mw")
+autoplay = "default"
+frame_progress = 0.844896
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ihf1j")
