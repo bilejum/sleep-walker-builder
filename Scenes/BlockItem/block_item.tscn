@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=4 uid="uid://bmkr237jnqcwe"]
+[gd_scene load_steps=4 format=4 uid="uid://bmkr237jnqcwe"]
 
 [ext_resource type="Script" path="res://Scenes/BlockItem/block_item.gd" id="1_dklmc"]
 [ext_resource type="TileSet" uid="uid://ct1sar53osgk1" path="res://Resources/Level_TileMap.tres" id="1_qphc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5miv"]
+size = Vector2(52, 34)
 
 [node name="BlockItem" type="Node2D"]
 script = ExtResource("1_dklmc")
@@ -11,3 +14,12 @@ position = Vector2(-28, -18)
 tile_map_data = PackedByteArray("AAAAAAAAAgAAAAMAAAABAAAAAgABAAMAAAACAAAAAgACAAMAAAAAAAEAAgAAAAUAAAABAAEAAgABAAUAAAACAAEAAgACAAUAAAA=")
 tile_set = ExtResource("1_qphc4")
 collision_enabled = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_v5miv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

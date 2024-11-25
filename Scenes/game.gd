@@ -18,9 +18,12 @@ func place_block():
 	var map = level.get_node('TileMapLayer')
 	var cell = map.local_to_map(map.get_local_mouse_position())
 	var cell_position = map.map_to_local(cell)
-	cell_position = Vector2(cell_position.x,cell_position.y +8)
-	preview_block.global_position = cell_position
-	if cell_position not in placed_cell_list:
+	cell_position = Vector2(cell_position.x+1,cell_position.y +9)
+	# 方块放置动画
+	var tween = get_tree().create_tween()
+	tween.tween_property(preview_block,"global_position",cell_position,0.1)
+	#preview_block.global_position = cell_position
+	if not preview_block.place_collided:
 		can_place_block = true
 		preview_block.modulate = Color(1,1,1)
 	else:
