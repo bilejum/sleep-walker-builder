@@ -14,7 +14,7 @@ position = Vector2(14, 96)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(192, 108)
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)
 
 [node name="Bed_Target" type="ColorRect" parent="."]
 offset_left = 350.0
