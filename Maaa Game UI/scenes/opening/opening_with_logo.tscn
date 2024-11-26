@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj1p6wxrcdnbd"]
+
+[ext_resource type="PackedScene" path="res://Maaa Game UI/scenes/opening/opening.tscn" id="1_w28il"]
+[ext_resource type="Texture2D" path="res://Maaa Game UI/assets/images/logo_vertical_color_dark.png" id="2_u61dw"]
+
+[node name="Opening" instance=ExtResource("1_w28il")]
+images = Array[Texture2D]([ExtResource("2_u61dw")])

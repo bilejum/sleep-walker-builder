@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://bqw7wu8yjjynq"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="1_mkd0t"]
+[ext_resource type="PackedScene" uid="uid://dbcwokkk6bure" path="res://Maaa Game UI/scenes/overlaid_menus/pause_menu.tscn" id="2_fp7c4"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_loader.gd" id="3_3e71k"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_isy61"]
+[ext_resource type="PackedScene" uid="uid://eld5iqvaprfc" path="res://Maaa Game UI/scenes/loading_screen/level_loading_screen.tscn" id="5_8lotl"]
+[ext_resource type="Script" path="res://Maaa Game UI/scenes/game_scene/configurable_sub_viewport.gd" id="6_tmmwl"]
+[ext_resource type="Script" path="res://Maaa Game UI/scenes/game_scene/input_display_label.gd" id="7_fn0u3"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_manager.gd" id="8_fjtkf"]
+[ext_resource type="PackedScene" uid="uid://cglhpum6ymban" path="res://Maaa Game UI/scenes/overlaid_menus/game_won_menu.tscn" id="9_cb77m"]
+[ext_resource type="PackedScene" uid="uid://bo77ewwa3g8fx" path="res://Maaa Game UI/scenes/overlaid_menus/level_lost_menu.tscn" id="10_qd5rc"]
+[ext_resource type="PackedScene" uid="uid://usl75bfvexrd" path="res://Maaa Game UI/scenes/overlaid_menus/level_won_menu.tscn" id="11_ygrns"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenuController" type="Node" parent="." node_paths=PackedStringArray("focused_viewport")]
+script = ExtResource("1_mkd0t")
+pause_menu_packed = ExtResource("2_fp7c4")
+focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
+
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("3_3e71k")
+level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
+files = Array[String](["res://Maaa Game UI/scenes/game_scene/levels/level_1.tscn", "res://Maaa Game UI/scenes/game_scene/levels/level_2.tscn", "res://Maaa Game UI/scenes/game_scene/levels/level_3.tscn"])
+directory = "res://Maaa Game UI/scenes/game_scene/levels"
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_isy61")]
+bus = &"Master"
+
+[node name="LevelLoadingScreen" parent="." instance=ExtResource("5_8lotl")]
+visible = false
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("6_tmmwl")
+
+[node name="InputDisplayLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("7_fn0u3")
+
+[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
+script = ExtResource("8_fjtkf")
+level_list_loader = NodePath("../LevelLoader")
+main_menu_scene = "res://Maaa Game UI/scenes/menus/main_menu/main_menu_with_animations.tscn"
+ending_scene = "res://Maaa Game UI/scenes/end_credits/end_credits.tscn"
+level_loading_screen = NodePath("../LevelLoadingScreen")
+game_won_scene = ExtResource("9_cb77m")
+level_lost_scene = ExtResource("10_qd5rc")
+level_won_scene = ExtResource("11_ygrns")
+
+[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
+[connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
+[connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]
