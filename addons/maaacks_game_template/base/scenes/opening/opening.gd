@@ -85,7 +85,7 @@ func _show_next_image(animated : bool = true):
 			_load_next_scene()
 		return
 	var texture_rect = %ImagesContainer.get_child(next_image_index)
-	if animated: 
+	if animated:
 		tween = create_tween()
 		tween.tween_property(texture_rect, "modulate:a", 1.0, fade_in_time)
 		await tween.finished

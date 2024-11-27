@@ -8,11 +8,11 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_hf636")
 
-[node name="Level" parent="." instance=ExtResource("1_6dybv")]
-
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="HUD" instance=ExtResource("2_o3t31")]
 
 [node name="BlockManager" type="Node" parent="."]
 script = ExtResource("4_2dgjf")
+
+[node name="Level" parent="." instance=ExtResource("1_6dybv")]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfdnu50j1grhh"]
 
 [ext_resource type="Script" path="res://Maaa Game UI/scenes/game_scene/levels/level.gd" id="1_84ret"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_kboay"]
+[ext_resource type="PackedScene" uid="uid://l2nij647rrwq" path="res://Scenes/level.tscn" id="2_e78fg"]
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -12,32 +12,4 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_84ret")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-script = ExtResource("2_kboay")
-
-[node name="LoseButton" type="Button" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="WinButton" type="Button" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Win"
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
+[node name="Level" parent="." instance=ExtResource("2_e78fg")]
