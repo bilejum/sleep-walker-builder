@@ -15,12 +15,13 @@ var placed_cell_list= []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	place_block()
+	if preview_block:
+		place_block()
 
 
 func place_block():
@@ -31,9 +32,9 @@ func place_block():
 	var cell_position = map.map_to_local(cell)
 	# 判断是否旋转90度，两种方向的坐标分开处理
 	if not preview_block.is_rotated:
-		cell_position = Vector2(cell_position.x+1,cell_position.y +9)
+		cell_position = Vector2(cell_position.x,cell_position.y +9)
 	else:
-		cell_position = Vector2(cell_position.x+9,cell_position.y+1)
+		cell_position = Vector2(cell_position.x+9,cell_position.y)
 	# 方块放置动画
 	var tween = get_tree().create_tween()
 	tween.tween_property(preview_block,"global_position",cell_position,0.1)
@@ -68,3 +69,7 @@ func place_block():
 		#preview_block.rotate(PI/2)
 
 		preview_block.is_rotated = not preview_block.is_rotated
+
+
+func _on_trashcan_button_pressed() -> void:
+	place_mode = Place_Mode.DELETE

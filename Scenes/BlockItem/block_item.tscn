@@ -10,7 +10,7 @@ size = Vector2(50, 32)
 script = ExtResource("1_dklmc")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(-28, -18)
+position = Vector2(-27, -18)
 tile_map_data = PackedByteArray("AAAAAAAAAgAAAAMAAAABAAAAAgABAAMAAAACAAAAAgACAAMAAAAAAAEAAgAAAAUAAAABAAEAAgABAAUAAAACAAEAAgACAAUAAAA=")
 tile_set = ExtResource("1_qphc4")
 collision_enabled = false
@@ -18,8 +18,10 @@ collision_enabled = false
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_v5miv")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

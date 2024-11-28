@@ -2,6 +2,7 @@ extends Button
 
 const BLOCK_ITEM_SCENE = preload("res://Scenes/BlockItem/block_item.tscn")
 var block_place_manager :BlockPlaceManager
+
 func _ready() -> void:
 	block_place_manager = owner.get_node('BlockPlaceManager')
 
@@ -13,6 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	if block_place_manager.preview_block:return
+	block_place_manager.place_mode = block_place_manager.Place_Mode.PLACE
 	var item_block = BLOCK_ITEM_SCENE.instantiate()
 	block_place_manager.preview_block = item_block
 	block_place_manager.add_child(item_block)

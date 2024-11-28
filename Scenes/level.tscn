@@ -11,7 +11,7 @@ tile_set = ExtResource("1_4r3gf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(192, 108)
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(3, 3)
 
 [node name="Bed_Target" type="ColorRect" parent="."]
 offset_left = 350.0

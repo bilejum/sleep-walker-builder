@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	if owner.preview_block:return
+	#block_place_manager.place_mode = block_place_manager.Place_Mode.PLACE
 	var item_block = SPRING_SCENE.instantiate()
 	owner.preview_block = item_block
 	owner.owner.add_child(item_block)
