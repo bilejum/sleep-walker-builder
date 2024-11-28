@@ -1,9 +1,10 @@
 extends Node
-@onready var ui: Control = $HUD/UI
-@onready var level: Node2D = $Level
-# Called when the node enters the scene tree for the first time.
+@onready var level_manager: LevelManager = $LevelManager
+
+var preview_block :BlockItem
+
 func _ready() -> void:
-	pass # Replace with function body.
+	level_manager.load_level('level1')
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

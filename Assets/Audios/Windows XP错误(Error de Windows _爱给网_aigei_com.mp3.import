@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0guiofpy3ris"
+path="res://.godot/imported/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3-53ebf298555da254fd6f5a9778df1a57.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audios/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3"
+dest_files=["res://.godot/imported/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3-53ebf298555da254fd6f5a9778df1a57.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

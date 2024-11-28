@@ -40,6 +40,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihf1j"]
+radius = 6.0
 
 [node name="SleepWalker" type="CharacterBody2D"]
 script = ExtResource("1_1tg3j")

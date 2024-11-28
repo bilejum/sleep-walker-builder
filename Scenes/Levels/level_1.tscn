@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=4 uid="uid://b1nnd8ip7h2ge"]
+
+[ext_resource type="PackedScene" uid="uid://l2nij647rrwq" path="res://Scenes/level.tscn" id="1_o3ver"]
+
+[node name="Level1" instance=ExtResource("1_o3ver")]
+
+[node name="TileMapLayer" parent="." index="0"]
+tile_map_data = PackedByteArray("AAACAAcAAQABAAUAAAACAAYAAQABAAMAAAABAAcAAQABAAUAAAABAAYAAQABAAMAAAAAAAcAAQAAAAUAAAAAAAYAAQAAAAMAAAADAAcAAQACAAUAAAADAAYAAQACAAMAAAAVAAcAAQACAAUAAAAVAAYAAQACAAMAAAAUAAcAAQABAAUAAAAUAAYAAQABAAMAAAATAAcAAQABAAUAAAATAAYAAQABAAMAAAASAAYAAQABAAMAAAASAAcAAQABAAUAAAARAAYAAQAAAAMAAAARAAcAAQAAAAUAAAA=")
+
+[node name="Camera2D" parent="." index="1"]
+zoom = Vector2(3, 3)
