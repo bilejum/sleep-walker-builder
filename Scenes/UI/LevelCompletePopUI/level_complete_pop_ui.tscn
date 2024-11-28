@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://chxny0bgauehh"]
+
+[node name="LevelCompletePopUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/MarginContainer"]
+layout_mode = 2
+text = "前往 下一个梦境"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CenterContainer/Panel/MarginContainer2"]
+layout_mode = 2
+text = "下一关"

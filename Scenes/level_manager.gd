@@ -1,16 +1,23 @@
 extends Node
 class_name LevelManager
+
+const LEVEL_COMPLETE_POP_UI = preload("res://Scenes/UI/LevelCompletePopUI/level_complete_pop_ui.tscn")
+
 # 存储当前关卡的名称
 var current_level: String = ""
 var levels: Array = [] # 存储所有关卡的名称（或路径）
-
+var current_level_ins
 # 信号，当关卡加载完成时发射
 signal level_loaded(level_name: String)
 
+
+func _process(delta: float) -> void:
+	pass
+		
 # 预设的关卡路径
 var level_scene_paths = {
 	"level1": "res://Scenes/Levels/level_1.tscn",
-	"level2": "res://scenes/Level2.tscn",
+	"level2": "res://Scenes/Levels/level_2.tscn",
 	"level3": "res://scenes/Level3.tscn"
 }
 
@@ -22,8 +29,8 @@ func _ready():
 func load_level(level_name: String):
 	if level_scene_paths.has(level_name):
 		var scene = load(level_scene_paths[level_name])
-		var instance = scene.instantiate()
-		add_child(instance)
+		current_level_ins = scene.instantiate()
+		add_child(current_level_ins)
 		current_level = level_name
 		emit_signal("level_loaded", level_name)
 	else:
