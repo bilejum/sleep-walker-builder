@@ -51,17 +51,28 @@ func switch_level():
 	if current_level_ins:
 		current_level_ins.queue_free()
 		# 删除所有场景方块
-		var block_in_this_level_list = block_place_manager.get_children()
-		for node in block_in_this_level_list:
-			if node is BlockItem:
-				node.queue_free()
+		clear_all_block()
 		load_level(current_level_index)
 		
 func restart_level():
 	if current_level_ins:
 		current_level_ins.queue_free()
 		load_level(current_level_index,true)
+
+# 又重启关卡又重置方块
+func restart_level_super():
+	if current_level_ins:
+		current_level_ins.queue_free()
+		clear_all_block()
+		load_level(current_level_index,false)
 		
+# 删除所有场景方块
+func clear_all_block():
+	var block_in_this_level_list = block_place_manager.get_children()
+	for node in block_in_this_level_list:
+		if node is BlockItem:
+			node.queue_free()
+
 
 func _on_level_loaded() -> void:
 	board_button.num = board_num

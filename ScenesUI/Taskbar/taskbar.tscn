@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cfj5p5pgfnywp"]
+[gd_scene load_steps=26 format=3 uid="uid://cfj5p5pgfnywp"]
 
 [ext_resource type="Script" path="res://ScenesUI/Taskbar/start_button.gd" id="1_aypgd"]
 [ext_resource type="PackedScene" uid="uid://da4oly47yx3ja" path="res://ScenesUI/Taskbar/start_menu_option.tscn" id="2_1ualm"]
@@ -13,7 +13,11 @@
 [ext_resource type="Script" path="res://ScenesUI/Taskbar/taskbar_time.gd" id="7_2yhho"]
 [ext_resource type="Texture2D" uid="uid://i2vjnoh88ptw" path="res://Assets/UI/trashcan.png" id="8_p7c8y"]
 [ext_resource type="Script" path="res://ScenesUI/Taskbar/trashcan_button.gd" id="8_vrpfj"]
+[ext_resource type="Script" path="res://ScenesUI/Taskbar/restart_button.gd" id="14_f2ywa"]
 [ext_resource type="AudioStream" uid="uid://d0guiofpy3ris" path="res://Assets/Audios/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3" id="14_gdg6g"]
+[ext_resource type="Texture2D" uid="uid://dut1wsmjqr427" path="res://Assets/UI/TaskBar/return.png" id="15_hbe11"]
+[ext_resource type="Script" path="res://ScenesUI/Taskbar/speed_up.gd" id="16_f2gjf"]
+[ext_resource type="Texture2D" uid="uid://dxqgju8leyyj1" path="res://Assets/UI/TaskBar/next.png" id="17_3mgyc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnonj"]
 bg_color = Color(0.666667, 0, 0, 0.392157)
@@ -273,6 +277,42 @@ mouse_filter = 2
 texture = ExtResource("8_p7c8y")
 expand_mode = 2
 
+[node name="RestartButton" type="MarginContainer" parent="Taskbar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+script = ExtResource("14_f2ywa")
+
+[node name="Button" type="Button" parent="Taskbar/HBoxContainer/RestartButton"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Taskbar/HBoxContainer/RestartButton"]
+texture_filter = 4
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("15_hbe11")
+expand_mode = 2
+
+[node name="SpeedUp" type="MarginContainer" parent="Taskbar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+script = ExtResource("16_f2gjf")
+
+[node name="Button" type="Button" parent="Taskbar/HBoxContainer/SpeedUp"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Taskbar/HBoxContainer/SpeedUp"]
+texture_filter = 4
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("17_3mgyc")
+expand_mode = 2
+
 [node name="NoItem" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_gdg6g")
 
@@ -286,6 +326,8 @@ stream = ExtResource("14_gdg6g")
 [connection signal="mouse_entered" from="Taskbar/HBoxContainer/Trashcan" to="Taskbar/HBoxContainer/Trashcan/TrashcanButton" method="_on_trashcan_mouse_entered"]
 [connection signal="mouse_exited" from="Taskbar/HBoxContainer/Trashcan" to="Taskbar/HBoxContainer/Trashcan/TrashcanButton" method="_on_trashcan_mouse_exited"]
 [connection signal="pressed" from="Taskbar/HBoxContainer/Trashcan/TrashcanButton" to="Taskbar/HBoxContainer/Trashcan/TrashcanButton" method="_on_pressed"]
+[connection signal="pressed" from="Taskbar/HBoxContainer/RestartButton/Button" to="Taskbar/HBoxContainer/RestartButton" method="_on_button_pressed"]
+[connection signal="pressed" from="Taskbar/HBoxContainer/SpeedUp/Button" to="Taskbar/HBoxContainer/SpeedUp" method="_on_button_pressed"]
 
 [editable path="StartMenuAnchor/Start Menu/BlockItemButton/BoardButton"]
 [editable path="StartMenuAnchor/Start Menu/BlockItemButton/SpringButton"]
