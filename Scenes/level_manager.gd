@@ -53,3 +53,4 @@ func restart_level():
 	if current_level_ins:
 		current_level_ins.queue_free()
 		load_level(current_level_index)
+		

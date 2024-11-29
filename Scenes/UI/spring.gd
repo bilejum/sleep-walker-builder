@@ -1,8 +1,10 @@
 extends Button
-const SPRING_SCENE = preload("res://Scenes/GameItems/Spring/spring.tscn")
-# Called when the node enters the scene tree for the first time.
+
+const SPRING_SCENE = preload("res://Scenes/BlockItem/Spring/spring.tscn")
+var block_place_manager :BlockPlaceManager
+
 func _ready() -> void:
-	pass # Replace with function body.
+	block_place_manager = owner.get_node('BlockPlaceManager')
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -11,9 +13,9 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	if owner.preview_block:return
-	#block_place_manager.place_mode = block_place_manager.Place_Mode.PLACE
+	if block_place_manager.preview_block:return
+	block_place_manager.place_mode = block_place_manager.Place_Mode.PLACE
 	var item_block = SPRING_SCENE.instantiate()
-	owner.preview_block = item_block
-	owner.owner.add_child(item_block)
+	block_place_manager.preview_block = item_block
+	block_place_manager.add_child(item_block)
 	item_block.global_position = get_global_mouse_position()

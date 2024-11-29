@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=4 uid="uid://l2nij647rrwq"]
+
+[ext_resource type="TileSet" uid="uid://ct1sar53osgk1" path="res://Resources/Level_TileMap.tres" id="1_4r3gf"]
+[ext_resource type="Script" path="res://Scenes/level.gd" id="1_8k32d"]
+[ext_resource type="Shader" path="res://Resources/Shaders/diamond_transition.gdshader" id="1_vxrwi"]
+[ext_resource type="PackedScene" uid="uid://cjgjad8wi8r0s" path="res://Scenes/sleep_walker.tscn" id="2_cu5xf"]
+[ext_resource type="PackedScene" uid="uid://dxewhajbemxxv" path="res://Scenes/GameItems/Bed/bed.tscn" id="3_ayxlg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4uga"]
+shader = ExtResource("1_vxrwi")
+shader_parameter/progress = null
+shader_parameter/diamondPixelSize = 10.0
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_8k32d")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAACAAcAAQABAAUAAAACAAYAAQABAAMAAAABAAcAAQABAAUAAAABAAYAAQABAAMAAAAAAAcAAQABAAUAAAAAAAYAAQABAAMAAAAEAAcAAQABAAUAAAAEAAYAAQABAAMAAAADAAcAAQABAAUAAAADAAYAAQABAAMAAAAVAAcAAQABAAUAAAAVAAYAAQABAAMAAAAUAAcAAQABAAUAAAAUAAYAAQABAAMAAAATAAcAAQABAAUAAAATAAYAAQABAAMAAAASAAYAAQABAAMAAAASAAcAAQABAAUAAAARAAYAAQABAAMAAAARAAcAAQABAAUAAAAQAAcAAQABAAUAAAAQAAYAAQABAAMAAAAPAAcAAQABAAUAAAAPAAYAAQABAAMAAAAOAAcAAQABAAUAAAAOAAYAAQABAAMAAAANAAcAAQABAAUAAAANAAYAAQABAAMAAAAMAAcAAQABAAUAAAAMAAYAAQABAAMAAAALAAcAAQABAAUAAAALAAYAAQABAAMAAAAKAAcAAQABAAUAAAAKAAYAAQABAAMAAAAJAAcAAQABAAUAAAAJAAYAAQABAAMAAAAIAAcAAQABAAUAAAAIAAYAAQABAAMAAAAHAAcAAQABAAUAAAAHAAYAAQABAAMAAAAGAAcAAQABAAUAAAAGAAYAAQABAAMAAAAFAAcAAQABAAUAAAAFAAYAAQABAAMAAAAkAAcAAQACAAUAAAAkAAYAAQACAAMAAAAjAAcAAQABAAUAAAAjAAYAAQABAAMAAAAiAAcAAQABAAUAAAAiAAYAAQABAAMAAAAhAAcAAQABAAUAAAAhAAYAAQABAAMAAAAgAAcAAQABAAUAAAAgAAYAAQABAAMAAAAfAAcAAQABAAUAAAAfAAYAAQABAAMAAAAeAAcAAQABAAUAAAAeAAYAAQABAAMAAAAdAAcAAQABAAUAAAAdAAYAAQABAAMAAAAcAAcAAQABAAUAAAAcAAYAAQABAAMAAAAbAAcAAQABAAUAAAAbAAYAAQABAAMAAAAaAAcAAQABAAUAAAAaAAYAAQABAAMAAAAZAAcAAQABAAUAAAAZAAYAAQABAAMAAAAYAAcAAQABAAUAAAAYAAYAAQABAAMAAAAXAAcAAQABAAUAAAAXAAYAAQABAAMAAAAWAAcAAQABAAUAAAAWAAYAAQABAAMAAAD//wcAAQABAAUAAAD//wYAAQABAAMAAAD+/wcAAQABAAUAAAD+/wYAAQABAAMAAAD9/wcAAQABAAUAAAD9/wYAAQABAAMAAAD8/wcAAQABAAUAAAD8/wYAAQABAAMAAAD7/wcAAQABAAUAAAD7/wYAAQABAAMAAAD6/wcAAQABAAUAAAD6/wYAAQABAAMAAAD5/wcAAQAAAAUAAAD5/wYAAQAAAAMAAAA=")
+tile_set = ExtResource("1_4r3gf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(192, 108)
+zoom = Vector2(3, 3)
+
+[node name="SleepWalker" parent="." instance=ExtResource("2_cu5xf")]
+position = Vector2(14, 96)
+
+[node name="Bed" parent="." instance=ExtResource("3_ayxlg")]
+position = Vector2(336, 70)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BackGround" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_n4uga")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="level_complete" from="Bed" to="." method="_on_bed_level_complete"]

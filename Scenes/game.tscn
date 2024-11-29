@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0ycgyww1stoo"]
+[gd_scene load_steps=20 format=3 uid="uid://d0ycgyww1stoo"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_hf636"]
 [ext_resource type="Script" path="res://Scenes/UI/button.gd" id="2_8tk7p"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dro2g5xagsjev" path="res://Assets/UI/trash_can.png" id="7_tfgma"]
 [ext_resource type="Texture2D" uid="uid://bcfyhc2d1bgia" path="res://Assets/UI/trash_can_hover.png" id="8_fknpp"]
 [ext_resource type="Texture2D" uid="uid://svntihci1ntf" path="res://Assets/UI/ui_button.png" id="9_erqoy"]
+[ext_resource type="Shader" path="res://Resources/Shaders/diamond_transition.gdshader" id="10_21d6y"]
 [ext_resource type="Script" path="res://Scenes/block_place_manager.gd" id="10_y4g10"]
+[ext_resource type="Script" path="res://Scenes/UI/transition_background.gd" id="11_oaym3"]
 [ext_resource type="AudioStream" uid="uid://d0guiofpy3ris" path="res://Assets/Audios/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3" id="11_tfcaj"]
 [ext_resource type="Script" path="res://Scenes/level_manager.gd" id="12_n6svp"]
 
@@ -27,6 +29,11 @@ region = Rect2(162, 32, 12, 15)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nc60j"]
 atlas = ExtResource("9_erqoy")
 region = Rect2(321, 161, 13, 14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oyol4"]
+shader = ExtResource("10_21d6y")
+shader_parameter/progress = null
+shader_parameter/diamondPixelSize = 100.0
 
 [node name="Game" type="Node"]
 script = ExtResource("1_hf636")
@@ -181,6 +188,17 @@ expand_mode = 3
 [node name="Label" type="Label" parent="HUD/GUI/TipsTray/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "旋转"
+
+[node name="Transition_Background" type="ColorRect" parent="HUD"]
+material = SubResource("ShaderMaterial_oyol4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("11_oaym3")
 
 [node name="BlockPlaceManager" type="Node" parent="."]
 script = ExtResource("10_y4g10")

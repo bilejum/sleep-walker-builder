@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://cp2078khsqx6t"]
+
+[ext_resource type="TileSet" uid="uid://ct1sar53osgk1" path="res://Resources/Level_TileMap.tres" id="2_04wxf"]
+[ext_resource type="Texture2D" uid="uid://mdabj3gqcgko" path="res://Assets/GameItems/Spring/jumppad1.png" id="3_wnt77"]
+[ext_resource type="Texture2D" uid="uid://ctflle5kuvoeb" path="res://Assets/GameItems/Spring/jumppad2.png" id="4_imm8j"]
+[ext_resource type="Texture2D" uid="uid://1bv2dosit48g" path="res://Assets/GameItems/Spring/jumppad3.png" id="5_ftunr"]
+[ext_resource type="Texture2D" uid="uid://kffwko040w78" path="res://Assets/GameItems/Spring/jumppad4.png" id="6_xfxpp"]
+[ext_resource type="Texture2D" uid="uid://ysangiyajq73" path="res://Assets/GameItems/Spring/jumppad5.png" id="7_pan6m"]
+
+[sub_resource type="GDScript" id="GDScript_4y3ex"]
+script/source = "extends BlockItem
+#@onready var area_2d: Area2D = $Area2D
+#@onready var tile_map_layer: TileMapLayer = $TileMapLayer
+#
+#@export var can_rotate :=false
+#var place_collided := false
+#var collision_num : int
+#var is_rotated := false
+#var _mouse_entered := false
+# Called when the node enters the scene tree for the first time.
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is BlockItem:
+		collision_num = area_2d.get_overlapping_bodies().size()
+		place_collided = true
+	if body is CharacterBody2D:
+		body.velocity = Vector2(100* body.go_back,-500)
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is BlockItem:
+		collision_num = area_2d.get_overlapping_bodies().size()
+		if collision_num <=0:
+			place_collided = false
+
+
+func _on_area_2d_mouse_entered() -> void:
+	if get_parent().place_mode == get_parent().Place_Mode.DELETE:
+		self.modulate = Color.CRIMSON
+		_mouse_entered = true
+
+func _on_area_2d_mouse_exited() -> void:
+	if get_parent().place_mode == get_parent().Place_Mode.DELETE:
+		self.modulate = Color(1,1,1)
+		_mouse_entered = false
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and get_parent().place_mode == get_parent().Place_Mode.DELETE:
+		tile_map_layer.set_collision_enabled(false)
+		var tween = get_tree().create_tween()
+		tween.tween_property(self,'global_position',Vector2(0,0),0.2)
+		tween.tween_callback(queue_free)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5miv"]
+size = Vector2(14, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nnt7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wnt77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_imm8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ftunr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xfxpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pan6m")
+}],
+"loop": false,
+"name": &"sping_up",
+"speed": 20.0
+}]
+
+[node name="Spring" type="Node2D"]
+script = SubResource("GDScript_4y3ex")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-27, -18)
+tile_set = ExtResource("2_04wxf")
+collision_enabled = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_v5miv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_nnt7n")
+animation = &"sping_up"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

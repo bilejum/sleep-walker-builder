@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
-
 const SPEED = 30
 const JUMP_VELOCITY = -400.0
 var go_back := 1
 var was_on_floor :=false
 var screen_bound_y
 var level_manager:LevelManager
+var game
 func _ready() -> void:
+	game = owner.get_parent().get_parent()
 	level_manager = owner.get_parent()
 	velocity.x =SPEED
 	# 获取当前屏幕的高度（以世界坐标计算）
@@ -36,5 +37,9 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if position.y > screen_bound_y:
-		level_manager.restart_level()
+		var transition_background = game.get_node('HUD/Transition_Background')
+		if not transition_background.transiting:
+			transition_background.transition()
+			transition_background.transiting = true
+		#pass
 	move_and_slide()

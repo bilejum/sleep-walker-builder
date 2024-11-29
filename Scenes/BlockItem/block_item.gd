@@ -1,6 +1,9 @@
 extends Node2D
 class_name BlockItem
 @onready var area_2d: Area2D = $Area2D
+@onready var tile_map_layer: TileMapLayer = $TileMapLayer
+
+@export var can_rotate :=false
 
 var place_collided := false
 var collision_num : int
@@ -42,7 +45,7 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and get_parent().place_mode == get_parent().Place_Mode.DELETE:
+		tile_map_layer.set_collision_enabled(false)
 		var tween = get_tree().create_tween()
 		tween.tween_property(self,'global_position',Vector2(0,0),0.2)
 		tween.tween_callback(queue_free)
-		

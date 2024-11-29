@@ -10,3 +10,4 @@ func _on_bed_level_complete() -> void:
 	level_complete = true
 	var level_complete_pop_ui = LEVEL_COMPLETE_POP_UI.instantiate()
 	camera_2d.add_child(level_complete_pop_ui)
+	#change_scene_to_file()
