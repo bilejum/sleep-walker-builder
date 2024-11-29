@@ -22,7 +22,19 @@ func _process(delta: float) -> void:
 	if preview_block:
 		place_block()
 
-
+func _unhandled_input(event: InputEvent) -> void:
+	if not preview_block:return
+	if event.is_action_pressed("left_click"):
+		if can_place_block:
+			#placed_cell_list.append(cell_position)
+			preview_block.get_node("TileMapLayer").set_collision_enabled(true)
+			preview_block.can_function = true
+			self.preview_block = null
+			preview_block = null
+		else:
+			print('this place has occured')
+			place_collided_audio.play()
+	
 func place_block():
 	if not preview_block:return
 	# 转换鼠标坐标为tilemap坐标，再用tilemap坐标转换为本地坐标
@@ -45,15 +57,16 @@ func place_block():
 		can_place_block = false
 		preview_block.modulate = Color.CRIMSON
 	# 左键放置，赋值preview block 为 null
-	if Input.is_action_just_pressed('left_click'):
-		if can_place_block:
-			#placed_cell_list.append(cell_position)
-			preview_block.get_node("TileMapLayer").set_collision_enabled(true)
-			self.preview_block = null
-			preview_block = null
-		else:
-			print('this place has occured')
-			place_collided_audio.play()
+	#if Input.is_action_just_pressed('left_click'):
+		#if can_place_block:
+			##placed_cell_list.append(cell_position)
+			#preview_block.get_node("TileMapLayer").set_collision_enabled(true)
+			#preview_block.can_function = true
+			#self.preview_block = null
+			#preview_block = null
+		#else:
+			#print('this place has occured')
+			#place_collided_audio.play()
 	# 右键取消放置
 	if Input.is_action_just_pressed("right_click"):
 		preview_block.queue_free()
@@ -61,14 +74,19 @@ func place_block():
 		return
 
 	if Input.is_action_just_pressed("r_rotation"):
-		if is_equal_approx(preview_block.rotation, deg_to_rad(180)):
-			preview_block.rotation = deg_to_rad(0)
-		var tween_rotation = get_tree().create_tween()
-		tween_rotation.tween_property(preview_block,'rotation',preview_block.rotation + deg_to_rad(90),0.1)
-		#preview_block.rotate(PI/2)
+		if preview_block.can_rotate:
+			if is_equal_approx(preview_block.rotation, deg_to_rad(180)):
+				preview_block.rotation = deg_to_rad(0)
+			var tween_rotation = get_tree().create_tween()
+			tween_rotation.tween_property(preview_block,'rotation',preview_block.rotation + deg_to_rad(90),0.1)
+			#preview_block.rotate(PI/2)
 
-		preview_block.is_rotated = not preview_block.is_rotated
+			preview_block.is_rotated = not preview_block.is_rotated
+		else:
+			preview_block.modulate = Color.CRIMSON
+			var tween_rotation = get_tree().create_tween()
+			tween_rotation.tween_property(preview_block,'modulate',Color(1,1,1),0.3)
 
 
-func _on_trashcan_button_pressed() -> void:
-	place_mode = Place_Mode.DELETE
+#func _on_trashcan_button_pressed() -> void:
+	#place_mode = Place_Mode.DELETE

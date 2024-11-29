@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjgjad8wi8r0s"]
 
 [ext_resource type="Script" path="res://Scenes/sleep_walker.gd" id="1_1tg3j"]
-[ext_resource type="Texture2D" uid="uid://bas6rj1jq7d0q" path="res://Assets/Character.png" id="1_56c0g"]
+[ext_resource type="Texture2D" uid="uid://bas6rj1jq7d0q" path="res://Assets/GameItems/Character.png" id="1_56c0g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36rep"]
 atlas = ExtResource("1_56c0g")

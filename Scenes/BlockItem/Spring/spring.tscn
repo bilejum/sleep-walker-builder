@@ -22,8 +22,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is BlockItem:
 		collision_num = area_2d.get_overlapping_bodies().size()
 		place_collided = true
-	if body is CharacterBody2D:
-		body.velocity = Vector2(100* body.go_back,-500)
+	if can_function:
+		if body is CharacterBody2D:
+			body.velocity = Vector2(100* body.go_back,-500)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:

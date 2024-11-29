@@ -4,7 +4,7 @@ class_name BlockItem
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
 @export var can_rotate :=false
-
+@export var can_function :=false
 var place_collided := false
 var collision_num : int
 var is_rotated := false
@@ -47,5 +47,5 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event is InputEventMouseButton and event.is_pressed() and get_parent().place_mode == get_parent().Place_Mode.DELETE:
 		tile_map_layer.set_collision_enabled(false)
 		var tween = get_tree().create_tween()
-		tween.tween_property(self,'global_position',Vector2(0,0),0.2)
+		tween.tween_property(self,'global_position',Vector2(10,300),0.3)
 		tween.tween_callback(queue_free)

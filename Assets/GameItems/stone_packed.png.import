@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0kwkv1uq8nk5"
-path="res://.godot/imported/rock_packed.png-d38843694d4d0492937026d743a6b71a.ctex"
+uid="uid://dg1aao6jyyo8j"
+path="res://.godot/imported/stone_packed.png-cb3b0e8befa1a2455d9c727787aead80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rock_packed.png"
-dest_files=["res://.godot/imported/rock_packed.png-d38843694d4d0492937026d743a6b71a.ctex"]
+source_file="res://Assets/GameItems/stone_packed.png"
+dest_files=["res://.godot/imported/stone_packed.png-cb3b0e8befa1a2455d9c727787aead80.ctex"]
 
 [params]
 

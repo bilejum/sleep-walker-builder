@@ -7,6 +7,7 @@ size = Vector2(68, 32)
 
 [node name="Board" instance=ExtResource("1_ek5p2")]
 position = Vector2(-9, 0)
+can_rotate = true
 metadata/_edit_group_ = true
 
 [node name="TileMapLayer" parent="." index="0"]

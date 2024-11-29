@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://ct1sar53osgk1"]
 
-[ext_resource type="Texture2D" uid="uid://d0kwkv1uq8nk5" path="res://Assets/rock_packed.png" id="1_kwutm"]
-[ext_resource type="Texture2D" uid="uid://dg1aao6jyyo8j" path="res://Resources/stone_packed.png" id="2_fuo3q"]
+[ext_resource type="Texture2D" uid="uid://d0kwkv1uq8nk5" path="res://Assets/GameItems/rock_packed.png" id="1_kwutm"]
+[ext_resource type="Texture2D" uid="uid://dg1aao6jyyo8j" path="res://Assets/GameItems/stone_packed.png" id="2_fuo3q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v8mf4"]
 texture = ExtResource("1_kwutm")

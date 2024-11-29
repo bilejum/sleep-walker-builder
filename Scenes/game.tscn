@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0ycgyww1stoo"]
+[gd_scene load_steps=23 format=3 uid="uid://d0ycgyww1stoo"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_hf636"]
 [ext_resource type="Script" path="res://Scenes/UI/button.gd" id="2_8tk7p"]
@@ -13,32 +13,52 @@
 [ext_resource type="Script" path="res://Scenes/block_place_manager.gd" id="10_y4g10"]
 [ext_resource type="Script" path="res://Scenes/UI/transition_background.gd" id="11_oaym3"]
 [ext_resource type="AudioStream" uid="uid://d0guiofpy3ris" path="res://Assets/Audios/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3" id="11_tfcaj"]
+[ext_resource type="PackedScene" uid="uid://cfj5p5pgfnywp" path="res://ScenesUI/Taskbar/taskbar.tscn" id="12_570p8"]
 [ext_resource type="Script" path="res://Scenes/level_manager.gd" id="12_n6svp"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_64jpe"]
-atlas = ExtResource("9_erqoy")
-region = Rect2(146, 32, 12, 16)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_he0hr"]
-load_path = "res://.godot/imported/ui_button.png-6db201522cb55c0f7c0be1f577cef7c3.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6e7q5"]
-atlas = SubResource("CompressedTexture2D_he0hr")
-region = Rect2(162, 32, 12, 15)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nc60j"]
-atlas = ExtResource("9_erqoy")
-region = Rect2(321, 161, 13, 14)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oyol4"]
 shader = ExtResource("10_21d6y")
 shader_parameter/progress = null
 shader_parameter/diamondPixelSize = 100.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_64jpe"]
+atlas = ExtResource("9_erqoy")
+region = Rect2(146, 32, 12, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xhn08"]
+load_path = "res://.godot/imported/ui_button.png-6db201522cb55c0f7c0be1f577cef7c3.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e7q5"]
+atlas = SubResource("CompressedTexture2D_xhn08")
+region = Rect2(162, 32, 12, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc60j"]
+atlas = ExtResource("9_erqoy")
+region = Rect2(321, 161, 13, 14)
+
+[sub_resource type="InputEventKey" id="InputEventKey_d55he"]
+device = -1
+keycode = 68
+unicode = 100
+
+[sub_resource type="Shortcut" id="Shortcut_lmxg6"]
+events = [SubResource("InputEventKey_d55he")]
+
 [node name="Game" type="Node"]
 script = ExtResource("1_hf636")
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Transition_Background" type="ColorRect" parent="HUD"]
+material = SubResource("ShaderMaterial_oyol4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("11_oaym3")
 
 [node name="GUI" type="Control" parent="HUD"]
 layout_mode = 3
@@ -50,6 +70,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="BlockTray" type="MarginContainer" parent="HUD/GUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -110,6 +131,7 @@ text = "短板
 "
 
 [node name="FunctionsTray" type="MarginContainer" parent="HUD/GUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -147,8 +169,8 @@ offset_left = -48.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/GUI/TipsTray"]
 layout_mode = 2
@@ -189,16 +211,16 @@ expand_mode = 3
 layout_mode = 2
 text = "旋转"
 
-[node name="Transition_Background" type="ColorRect" parent="HUD"]
-material = SubResource("ShaderMaterial_oyol4")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("11_oaym3")
+[node name="Taskbar" parent="HUD" instance=ExtResource("12_570p8")]
+
+[node name="BoardButton" parent="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton" index="0"]
+title_text = "长板"
+
+[node name="SpringButton" parent="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton" index="1"]
+title_text = "弹簧"
+
+[node name="TrashcanButton" parent="HUD/Taskbar/Taskbar/HBoxContainer/Trashcan" index="0"]
+shortcut = SubResource("Shortcut_lmxg6")
 
 [node name="BlockPlaceManager" type="Node" parent="."]
 script = ExtResource("10_y4g10")
@@ -211,4 +233,8 @@ script = ExtResource("12_n6svp")
 
 [connection signal="pressed" from="HUD/GUI/BlockTray/HBoxContainer/Button" to="HUD/GUI/BlockTray/HBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="HUD/GUI/BlockTray/HBoxContainer/Spring" to="HUD/GUI/BlockTray/HBoxContainer/Spring" method="_on_pressed"]
-[connection signal="pressed" from="HUD/GUI/FunctionsTray/HBoxContainer2/Trashcan_Button" to="BlockPlaceManager" method="_on_trashcan_button_pressed"]
+[connection signal="level_loaded" from="LevelManager" to="LevelManager" method="_on_level_loaded"]
+
+[editable path="HUD/Taskbar"]
+[editable path="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/BoardButton"]
+[editable path="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/SpringButton"]

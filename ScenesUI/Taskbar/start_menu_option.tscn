@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://da4oly47yx3ja"]
+
+[ext_resource type="Script" path="res://ScenesUI/Taskbar/start_menu_option.gd" id="1_2fneu"]
+[ext_resource type="Texture2D" uid="uid://dg1aao6jyyo8j" path="res://Assets/GameItems/stone_packed.png" id="2_jpdcu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0gkon"]
+bg_color = Color(0, 0.792157, 0.952941, 0.72549)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0.952941, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw7ic"]
+atlas = ExtResource("2_jpdcu")
+region = Rect2(0, 36, 18, 18)
+
+[node name="Start Menu Option" type="Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 50)
+offset_bottom = 50.0
+script = ExtResource("1_2fneu")
+game_scene = "res://Games/Cube Scene/cube_scene.tscn"
+title_text = "长板"
+description_text = "x3"
+use_generic_pause_menu = true
+
+[node name="Background Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0gkon")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_xw7ic")
+expand_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Menu Title" type="RichTextLabel" parent="HBoxContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Game Title"
+
+[node name="Menu Description" type="RichTextLabel" parent="HBoxContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[center]Your very cool game description"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
