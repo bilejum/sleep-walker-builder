@@ -17,6 +17,8 @@ var level_scene_paths = ["res://Scenes/Levels/level_1.tscn","res://Scenes/Levels
 
 # 关卡物品
 var board_num :int
+	#set(value):
+		#level_loaded.emit()
 var spring_num :int
 
 # 信号，当关卡加载完成时发射
@@ -62,6 +64,5 @@ func restart_level():
 		
 
 func _on_level_loaded() -> void:
-	print('233')
 	board_button.num = board_num
 	spring_button.num = spring_num
