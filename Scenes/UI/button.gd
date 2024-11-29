@@ -1,6 +1,6 @@
 extends Button
 
-const BLOCK_ITEM_SCENE = preload("res://Scenes/BlockItem/block_item.tscn")
+const BLOCK_ITEM_SCENE = preload("res://Scenes/BlockItem/Board/board.tscn")
 var block_place_manager :BlockPlaceManager
 
 func _ready() -> void:

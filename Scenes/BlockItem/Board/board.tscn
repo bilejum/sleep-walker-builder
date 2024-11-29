@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=4 uid="uid://bqo5ano5lk7ug"]
+
+[ext_resource type="PackedScene" uid="uid://bmkr237jnqcwe" path="res://Scenes/BlockItem/block_item.tscn" id="1_ek5p2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hs4g7"]
+size = Vector2(68, 32)
+
+[node name="Board" instance=ExtResource("1_ek5p2")]
+position = Vector2(-9, 0)
+metadata/_edit_group_ = true
+
+[node name="TileMapLayer" parent="." index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAMAAAABAAAAAgABAAMAAAACAAAAAgABAAMAAAAAAAEAAgAAAAUAAAABAAEAAgABAAUAAAACAAEAAgABAAUAAAADAAEAAgACAAUAAAADAAAAAgACAAMAAAA=")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(9, 0)
+shape = SubResource("RectangleShape2D_hs4g7")

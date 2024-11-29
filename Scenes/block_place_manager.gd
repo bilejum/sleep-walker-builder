@@ -1,6 +1,5 @@
 extends Node
 class_name BlockPlaceManager
-const BLOCK_ITEM = preload("res://Scenes/BlockItem/block_item.tscn")
 @onready var level_manager: LevelManager = $"../LevelManager"
 @onready var place_collided_audio: AudioStreamPlayer = $PlaceCollidedAudio
 
