@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://ct1sar53osgk1"]
 
-[ext_resource type="Texture2D" uid="uid://d0kwkv1uq8nk5" path="res://Assets/GameItems/rock_packed.png" id="1_kwutm"]
-[ext_resource type="Texture2D" uid="uid://dg1aao6jyyo8j" path="res://Assets/GameItems/stone_packed.png" id="2_fuo3q"]
+[ext_resource type="Texture2D" uid="uid://d0kwkv1uq8nk5" path="res://Assets/GameItems/rock_packed.png" id="1_fpel7"]
+[ext_resource type="Texture2D" uid="uid://dg1aao6jyyo8j" path="res://Assets/GameItems/stone_packed.png" id="2_55x4v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v8mf4"]
-texture = ExtResource("1_kwutm")
+texture = ExtResource("1_fpel7")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
@@ -228,7 +228,7 @@ texture_region_size = Vector2i(18, 18)
 8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wi2rn"]
-texture = ExtResource("2_fuo3q")
+texture = ExtResource("2_55x4v")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cfj5p5pgfnywp"]
+[gd_scene load_steps=22 format=3 uid="uid://cfj5p5pgfnywp"]
 
 [ext_resource type="Script" path="res://ScenesUI/Taskbar/start_button.gd" id="1_aypgd"]
 [ext_resource type="PackedScene" uid="uid://da4oly47yx3ja" path="res://ScenesUI/Taskbar/start_menu_option.tscn" id="2_1ualm"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://ScenesUI/Taskbar/taskbar_time.gd" id="7_2yhho"]
 [ext_resource type="Texture2D" uid="uid://i2vjnoh88ptw" path="res://Assets/UI/trashcan.png" id="8_p7c8y"]
 [ext_resource type="Script" path="res://ScenesUI/Taskbar/trashcan_button.gd" id="8_vrpfj"]
+[ext_resource type="AudioStream" uid="uid://d0guiofpy3ris" path="res://Assets/Audios/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3" id="14_gdg6g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnonj"]
 bg_color = Color(0.666667, 0, 0, 0.392157)
@@ -271,6 +272,9 @@ layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("8_p7c8y")
 expand_mode = 2
+
+[node name="NoItem" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_gdg6g")
 
 [connection signal="mouse_entered" from="StartMenuAnchor/Start Menu" to="Taskbar/HBoxContainer/Start Button" method="_on_start_menu_mouse_entered"]
 [connection signal="mouse_exited" from="StartMenuAnchor/Start Menu" to="Taskbar/HBoxContainer/Start Button" method="_on_start_menu_mouse_exited"]

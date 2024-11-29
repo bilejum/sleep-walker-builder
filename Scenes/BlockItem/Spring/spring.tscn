@@ -19,19 +19,18 @@ script/source = "extends BlockItem
 #var _mouse_entered := false
 # Called when the node enters the scene tree for the first time.
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is BlockItem:
-		collision_num = area_2d.get_overlapping_bodies().size()
-		place_collided = true
+	var collision_list =area_2d.get_overlapping_bodies()
+	place_collided = true
 	if can_function:
 		if body is CharacterBody2D:
 			body.velocity = Vector2(100* body.go_back,-500)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is BlockItem:
-		collision_num = area_2d.get_overlapping_bodies().size()
-		if collision_num <=0:
-			place_collided = false
+	#if body is BlockItem:
+	collision_num = area_2d.get_overlapping_bodies().size()
+	if collision_num <=0:
+		place_collided = false
 
 
 func _on_area_2d_mouse_entered() -> void:
@@ -47,14 +46,23 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and get_parent().place_mode == get_parent().Place_Mode.DELETE:
+		# 删除模式 返回数量
+		add_item_num()
+		
 		tile_map_layer.set_collision_enabled(false)
 		var tween = get_tree().create_tween()
-		tween.tween_property(self,'global_position',Vector2(0,0),0.2)
+		tween.tween_property(self,'global_position',Vector2(10,300),0.3)
 		tween.tween_callback(queue_free)
+
+func add_item_num():
+	get_parent().get_parent().get_node('HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/SpringButton').num +=1
+	
+func delete_item_num():
+	get_parent().get_parent().get_node(\"HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/SpringButton\").num -=1
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5miv"]
-size = Vector2(14, 6)
+size = Vector2(14, 5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nnt7n"]
 animations = [{
@@ -90,7 +98,8 @@ collision_enabled = false
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -3)
+z_index = 2
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_v5miv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

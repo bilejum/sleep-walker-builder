@@ -46,9 +46,15 @@ func _on_area_2d_mouse_exited() -> void:
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and get_parent().place_mode == get_parent().Place_Mode.DELETE:
 		# 删除模式 返回数量
-		get_parent().get_parent().get_node("HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/BoardButton").num +=1
+		add_item_num()
 		
 		tile_map_layer.set_collision_enabled(false)
 		var tween = get_tree().create_tween()
 		tween.tween_property(self,'global_position',Vector2(10,300),0.3)
 		tween.tween_callback(queue_free)
+
+func add_item_num():
+	get_parent().get_parent().get_node("HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/BoardButton").num +=1
+	
+func delete_item_num():
+	get_parent().get_parent().get_node("HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/BoardButton").num -=1

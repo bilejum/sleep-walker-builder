@@ -29,6 +29,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			#placed_cell_list.append(cell_position)
 			preview_block.get_node("TileMapLayer").set_collision_enabled(true)
 			preview_block.can_function = true
+			
+			preview_block.delete_item_num()
+			
 			self.preview_block = null
 			preview_block = null
 		else:
