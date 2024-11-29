@@ -2,12 +2,23 @@ extends Node
 class_name BlockPlaceManager
 @onready var level_manager: LevelManager = $"../LevelManager"
 @onready var place_collided_audio: AudioStreamPlayer = $PlaceCollidedAudio
+@onready var build_mode_tips: VBoxContainer = $"../HUD/Taskbar/Taskbar/TipsTray/BuildModeTips"
+@onready var delete_mode_tips: VBoxContainer = $"../HUD/Taskbar/Taskbar/TipsTray/DeleteModeTips"
 
 enum Place_Mode{
 	PLACE,
 	DELETE
 }
-var place_mode :=Place_Mode.PLACE
+var place_mode :=Place_Mode.PLACE:
+	set(mode):
+		place_mode = mode
+		if mode == Place_Mode.PLACE:
+			build_mode_tips.set_visible(true)
+			delete_mode_tips.visible =false
+		else:
+			build_mode_tips.visible = false
+			delete_mode_tips.visible =true
+		
 var preview_block : BlockItem = null
 var can_place_block := true
 var placed_cell_list= []

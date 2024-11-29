@@ -6,11 +6,13 @@ var level_complete = false
 
 @export var board_num :int
 @export var spring_num:int
+@export_multiline var level_description : String
 var level_manager :LevelManager
 func _ready() -> void:
 	level_manager = get_parent()
 	level_manager.board_num = self.board_num
 	level_manager.spring_num = self.spring_num
+	level_manager.level_description = self.level_description
 func _on_bed_level_complete() -> void:
 	level_complete = true
 	var level_complete_pop_ui = LEVEL_COMPLETE_POP_UI.instantiate()

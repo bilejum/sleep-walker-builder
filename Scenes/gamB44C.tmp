@@ -169,18 +169,10 @@ texture_hover = ExtResource("8_fknpp")
 [node name="Taskbar" parent="HUD" instance=ExtResource("12_570p8")]
 
 [node name="BoardButton" parent="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton" index="0"]
-visible = false
 title_text = "长板"
 
 [node name="SpringButton" parent="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton" index="1"]
 title_text = "弹簧"
-
-[node name="DateText" parent="HUD/Taskbar/Taskbar/LevelInfo" index="1"]
-offset_left = -68.0
-offset_top = 26.0
-offset_bottom = 6.0
-fit_content = true
-scroll_active = false
 
 [node name="TrashcanButton" parent="HUD/Taskbar/Taskbar/HBoxContainer/Trashcan" index="0"]
 shortcut = SubResource("Shortcut_lmxg6")

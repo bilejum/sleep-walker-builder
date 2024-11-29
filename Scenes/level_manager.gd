@@ -10,10 +10,13 @@ var levels: Array = [] # 存储所有关卡的名称（或路径）
 var current_level_ins :GameLevel
 var current_level_index :=0
 var level_scene_paths = ["res://Scenes/Levels/level_1.tscn","res://Scenes/Levels/level_2.tscn","res://Scenes/Levels/level_3.tscn"]
+var level_description : String
+
 @onready var block_item_button: HBoxContainer = $"../HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton"
 
 @onready var board_button: Panel = $"../HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/BoardButton"
 @onready var spring_button: Panel = $"../HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/SpringButton"
+@onready var level_info: Control = $"../HUD/Taskbar/Taskbar/LevelInfo"
 
 # 关卡物品
 var board_num :int
@@ -40,6 +43,8 @@ func load_level(level_index: int,restart :bool = false):
 		add_child(current_level_ins)
 		
 		current_level_index = level_index
+		level_info.level_index	= current_level_index
+		level_info.level_description = self.level_description
 		level_loaded.emit()
 	else:
 		print("关卡不存在: ", level_index)

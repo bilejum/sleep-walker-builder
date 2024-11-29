@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbn63kxemkfpd" path="res://Assets/Backgrounds/bkgfsy006/bkg01.png" id="2_24x2p"]
 
 [node name="Level1" instance=ExtResource("1_o3ver")]
-spring_num = 3
+level_description = "梦的开始"
 
 [node name="Bed" parent="." index="3"]
 position = Vector2(349, 103)

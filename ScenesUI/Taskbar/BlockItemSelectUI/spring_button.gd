@@ -9,7 +9,13 @@ extends Panel
 @export var title_text: String
 
 ## Description shown in start menu option (added at runtime).
-@onready var num: int
+@onready var num: int:
+	set(number):
+		num = number
+		if num ==0:
+			item_exist = false
+		else:
+			item_exist = true
 
 ## Whether or not the scene should be instantiated inside a game window or outside one.
 ## (You probably want this on, but it's great if you want to make your own custom window or behavior)
@@ -22,6 +28,7 @@ extends Panel
 var is_mouse_over: bool
 const BLOCK_ITEM_SCENE = preload("res://Scenes/BlockItem/Board/board.tscn")
 var block_place_manager :BlockPlaceManager
+var item_exist := true
 @onready var no_item: AudioStreamPlayer = $"../../../../NoItem"
 
 func _ready() -> void:
@@ -33,6 +40,10 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	%"Menu Description".text = "[center]%s" % num
+	if item_exist:
+		visible = true
+	else:
+		visible= false
 
 
 func _gui_input(event: InputEvent) -> void:
