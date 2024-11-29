@@ -176,9 +176,10 @@ title_text = "长板"
 title_text = "弹簧"
 
 [node name="DateText" parent="HUD/Taskbar/Taskbar/LevelInfo" index="1"]
-offset_left = -68.0
-offset_top = 26.0
-offset_bottom = 6.0
+offset_left = 3.0
+offset_top = 27.0
+offset_right = 3.0
+offset_bottom = 8.0
 fit_content = true
 scroll_active = false
 

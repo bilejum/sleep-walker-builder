@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://l2nij647rrwq"]
+[gd_scene load_steps=6 format=4 uid="uid://l2nij647rrwq"]
 
 [ext_resource type="TileSet" uid="uid://ct1sar53osgk1" path="res://Resources/Level_TileMap.tres" id="1_4r3gf"]
 [ext_resource type="Script" path="res://Scenes/level.gd" id="1_8k32d"]
 [ext_resource type="PackedScene" uid="uid://cjgjad8wi8r0s" path="res://Scenes/sleep_walker.tscn" id="2_cu5xf"]
 [ext_resource type="PackedScene" uid="uid://dxewhajbemxxv" path="res://Scenes/GameItems/Bed/bed.tscn" id="3_ayxlg"]
+[ext_resource type="Texture2D" uid="uid://cbn63kxemkfpd" path="res://Assets/Backgrounds/bkgfsy006/bkg01.png" id="5_txkih"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_8k32d")
@@ -22,5 +23,15 @@ position = Vector2(14, 96)
 
 [node name="Bed" parent="." instance=ExtResource("3_ayxlg")]
 position = Vector2(344, 104)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(196, 112.25)
+rotation = 4.71239
+scale = Vector2(0.3, 0.307)
+texture = ExtResource("5_txkih")
 
 [connection signal="level_complete" from="Bed" to="." method="_on_bed_level_complete"]

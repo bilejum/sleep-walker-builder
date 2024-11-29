@@ -192,47 +192,45 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -92.0
+offset_left = -96.0
 offset_top = -20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("9_t2aev")
 
-[node name="TimeText" type="RichTextLabel" parent="Taskbar/LevelInfo"]
+[node name="MarginContainer" type="MarginContainer" parent="Taskbar/LevelInfo"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.0
+offset_left = -56.0
+offset_top = -3.0
+offset_right = -6.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Taskbar/LevelInfo/MarginContainer"]
+layout_mode = 2
+
+[node name="LevelIndex" type="Label" parent="Taskbar/LevelInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
-bbcode_enabled = true
+theme_override_constants/shadow_offset_y = 1
 text = "[center]22:22 PM"
+horizontal_alignment = 2
 
-[node name="DateText" type="RichTextLabel" parent="Taskbar/LevelInfo"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+[node name="LevelDes" type="Label" parent="Taskbar/LevelInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
+theme_override_constants/shadow_offset_y = 1
 text = "[center]69/69/2024"
-
-[node name="Timer" type="Timer" parent="Taskbar/LevelInfo"]
-wait_time = 10.0
-autostart = true
+horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Taskbar"]
 layout_mode = 1
@@ -320,7 +318,6 @@ stream = ExtResource("14_gdg6g")
 [connection signal="mouse_exited" from="StartMenuAnchor/Start Menu" to="Taskbar/HBoxContainer/Start Button" method="_on_start_menu_mouse_exited"]
 [connection signal="pressed" from="StartMenuAnchor/Start Menu/Power Button" to="StartMenuAnchor/Start Menu/Power Button" method="_on_pressed"]
 [connection signal="pressed" from="StartMenuAnchor/Start Menu/Settings Button" to="StartMenuAnchor/Start Menu/Settings Button" method="_on_pressed"]
-[connection signal="timeout" from="Taskbar/LevelInfo/Timer" to="Taskbar/LevelInfo" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="Taskbar/HBoxContainer/Start Button" to="Taskbar/HBoxContainer/Start Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Taskbar/HBoxContainer/Start Button" to="Taskbar/HBoxContainer/Start Button" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="Taskbar/HBoxContainer/Trashcan" to="Taskbar/HBoxContainer/Trashcan/TrashcanButton" method="_on_trashcan_mouse_entered"]

@@ -1,20 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1nnd8ip7h2ge"]
+[gd_scene load_steps=2 format=3 uid="uid://b1nnd8ip7h2ge"]
 
 [ext_resource type="PackedScene" uid="uid://l2nij647rrwq" path="res://Scenes/level.tscn" id="1_o3ver"]
-[ext_resource type="Texture2D" uid="uid://cbn63kxemkfpd" path="res://Assets/Backgrounds/bkgfsy006/bkg01.png" id="2_24x2p"]
 
 [node name="Level1" instance=ExtResource("1_o3ver")]
 level_description = "梦的开始"
 
 [node name="Bed" parent="." index="3"]
 position = Vector2(349, 103)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="4"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
-position = Vector2(196, 112.25)
-rotation = 4.71239
-scale = Vector2(0.3, 0.307)
-texture = ExtResource("2_24x2p")
