@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=4 uid="uid://cfimh1827d632"]
+
+[ext_resource type="PackedScene" uid="uid://l2nij647rrwq" path="res://Scenes/level.tscn" id="1_e06ee"]
+[ext_resource type="PackedScene" uid="uid://d1hm4ccib4cod" path="res://Scenes/Enemies/Ghost/ghost.tscn" id="2_om54l"]
+
+[node name="Level4" instance=ExtResource("1_e06ee")]
+board_num = 1
+spring_num = 1
+level_description = "鬼兵突击！"
+
+[node name="TileMapLayer" parent="." index="0"]
+tile_map_data = PackedByteArray("AAACAAcAAQABAAUAAAACAAYAAQABAAMAAAABAAcAAQABAAUAAAABAAYAAQABAAMAAAAAAAcAAQAAAAUAAAAAAAYAAQAAAAMAAAAEAAcAAQABAAUAAAAEAAYAAQABAAMAAAADAAcAAQABAAUAAAADAAYAAQABAAMAAAAVAAcAAQACAAUAAAAVAAYAAQACAAMAAAAUAAcAAQABAAUAAAAUAAYAAQABAAMAAAATAAcAAQABAAUAAAATAAYAAQABAAMAAAASAAYAAQABAAMAAAASAAcAAQABAAUAAAARAAYAAQABAAMAAAARAAcAAQABAAUAAAAFAAcAAQABAAUAAAAFAAYAAQABAAMAAAAQAAcAAQAAAAUAAAAQAAYAAQAAAAMAAAAGAAcAAQACAAUAAAAGAAYAAQACAAMAAAA=")
+
+[node name="Ghost" parent="." index="4" instance=ExtResource("2_om54l")]
+position = Vector2(192, 96)
+move_left = true
+speed = 10
+go_back = -1
+
+[node name="Ghost2" parent="." index="5" instance=ExtResource("2_om54l")]
+position = Vector2(272, 96)
+move_left = true
+speed = 10
+go_back = -1
+
+[node name="Ghost3" parent="." index="6" instance=ExtResource("2_om54l")]
+position = Vector2(352, 96)
+move_left = true
+speed = 10
+go_back = -1

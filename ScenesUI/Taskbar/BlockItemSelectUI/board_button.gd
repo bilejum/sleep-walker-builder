@@ -53,6 +53,7 @@ func _gui_input(event: InputEvent) -> void:
 			if num<=0:
 				no_item.play()
 			else:
+				$"../../../../ItemButtonPress".play()
 				block_place_manager.place_mode = block_place_manager.Place_Mode.PLACE
 				var item_block = block_item_scene.instantiate()
 				block_place_manager.preview_block = item_block

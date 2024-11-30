@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://gjsfs5kl13vm"]
+[gd_scene load_steps=3 format=3 uid="uid://gjsfs5kl13vm"]
+
+[ext_resource type="AudioStream" uid="uid://nslarde5lqov" path="res://Assets/Audios/Retro7.mp3" id="1_khswo"]
 
 [sub_resource type="GDScript" id="GDScript_s8bd6"]
 script/source = "extends Button
@@ -33,6 +35,7 @@ func _on_lvl_btn_pressed() -> void:
 	level_manager.load_level(level_index)
 	level_manager.level_transition()
 	get_parent().get_parent().get_parent().get_parent().visible = false
+	$Retro7.play()
 "
 
 [node name="LvlBtn" type="Button"]
@@ -42,6 +45,9 @@ offset_bottom = 150.0
 pivot_offset = Vector2(100, 75)
 text = "Level 1"
 script = SubResource("GDScript_s8bd6")
+
+[node name="Retro7" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_khswo")
 
 [connection signal="mouse_entered" from="." to="." method="_on_lvl_btn_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_lvl_btn_mouse_exited"]

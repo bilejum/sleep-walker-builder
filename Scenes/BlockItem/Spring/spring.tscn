@@ -23,7 +23,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	place_collided = true
 	if can_function:
 		if body is CharacterBody2D:
-			body.velocity = Vector2(150* body.go_back,-350)
+			body.velocity = Vector2(125* body.go_back,-370)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
@@ -62,7 +62,7 @@ func delete_item_num():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5miv"]
-size = Vector2(14, 5)
+size = Vector2(6, 5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nnt7n"]
 animations = [{
@@ -96,6 +96,7 @@ tile_set = ExtResource("2_04wxf")
 collision_enabled = false
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 z_index = 2

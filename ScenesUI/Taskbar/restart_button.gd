@@ -40,4 +40,5 @@ func _on_button_pressed() -> void:
 	var level_manager = block_place_manager.get_parent().get_node("LevelManager") as LevelManager
 	var transition_background = block_place_manager.get_parent().get_node('HUD/Transition_Background')
 	transition_background.transition()
+	block_place_manager.preview_block = null
 	level_manager.restart_level_super()

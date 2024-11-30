@@ -69,3 +69,4 @@ text = " 重试
 "
 
 [connection signal="pressed" from="LevelCompletePopUI/CenterContainer/Panel/MarginContainer2/HBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="LevelCompletePopUI/CenterContainer/Panel/MarginContainer2/HBoxContainer/ReStartButton" to="." method="_on_re_start_button_pressed"]

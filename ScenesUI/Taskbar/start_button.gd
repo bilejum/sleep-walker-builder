@@ -32,6 +32,7 @@ func handle_mouse_click() -> void:
 	if is_mouse_over:
 		if start_menu.position.y > 0:
 			show_start_menu()
+			$"../../../ButtonPress".play()
 		else:
 			hide_start_menu()
 	else:

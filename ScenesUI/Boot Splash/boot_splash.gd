@@ -6,7 +6,7 @@ class_name BootSplash
 
 @export var quit_animation: bool
 
-func _ready() -> void:
+func _ready() -> void:	
 	visible = true
 	scale /= get_window().content_scale_factor
 	if quit_animation:
@@ -49,6 +49,7 @@ func play_quit_animation() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var window_size: Vector2 = DisplayServer.window_get_size() as Vector2
+	#var window_size = Vector2(1152,648)
 	$CanvasGroup/Background.scale = window_size
 	$CanvasGroup/Background.global_position = window_size / 2
 	$CanvasGroup/Logo.global_position = window_size / 2

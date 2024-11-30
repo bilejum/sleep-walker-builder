@@ -9,7 +9,7 @@ const LEVEL_COMPLETE_POP_UI = preload("res://Scenes/UI/LevelCompletePopUI/level_
 var levels: Array = [] # 存储所有关卡的名称（或路径）
 var current_level_ins :GameLevel
 var current_level_index :=0
-var level_scene_paths = ["res://Scenes/Levels/level_1.tscn","res://Scenes/Levels/level_2.tscn","res://Scenes/Levels/level_3.tscn"]
+var level_scene_paths = []
 var level_description : String
 
 @onready var block_item_button: HBoxContainer = $"../HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton"
@@ -18,7 +18,7 @@ var level_description : String
 @onready var spring_button: Panel = $"../HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/SpringButton"
 @onready var level_info: Control = $"../HUD/Taskbar/Taskbar/LevelInfo"
 @onready var transition_background: ColorRect = $"../HUD/Transition_Background"
-
+@export var dir_path :String ='res://Scenes/Levels/'
 # 关卡物品
 var board_num :int
 	#set(value):
@@ -30,7 +30,22 @@ signal level_loaded()
 
 
 func _ready():
-	pass
+	get_levels(dir_path)
+
+func get_levels(dir_path):
+	# 打开目录
+	level_scene_paths.clear()
+	var dir = DirAccess.open(dir_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			level_scene_paths.append(dir_path + file_name)
+			print("发现文件：" + file_name)
+			file_name = dir.get_next()
+	else:
+		print("尝试访问路径时出错。")
+		
 
 # 加载关卡
 func load_level(level_index: int,restart :bool = false):

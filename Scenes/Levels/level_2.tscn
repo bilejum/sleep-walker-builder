@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://di10ban5tvu76"]
+[gd_scene load_steps=3 format=3 uid="uid://di10ban5tvu76"]
 
 [ext_resource type="PackedScene" uid="uid://l2nij647rrwq" path="res://Scenes/level.tscn" id="1_80jw3"]
+[ext_resource type="PackedScene" uid="uid://d1hm4ccib4cod" path="res://Scenes/Enemies/Ghost/ghost.tscn" id="2_viyi0"]
 
 [node name="Level2" instance=ExtResource("1_80jw3")]
 board_num = 2
 spring_num = 1
-level_description = "梦里为什么会有弹簧？"
+level_description = "在梦里见过的样子……"
 
 [node name="Bed" parent="." index="3"]
 position = Vector2(348, 103)
+
+[node name="Ghost" parent="." index="5" instance=ExtResource("2_viyi0")]
+position = Vector2(192, 24)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjgjad8wi8r0s"]
+[gd_scene load_steps=10 format=3 uid="uid://cjgjad8wi8r0s"]
 
 [ext_resource type="Script" path="res://Scenes/sleep_walker.gd" id="1_1tg3j"]
 [ext_resource type="Texture2D" uid="uid://bas6rj1jq7d0q" path="res://Assets/GameItems/Character.png" id="1_56c0g"]
@@ -42,6 +42,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihf1j"]
 radius = 6.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8vgm"]
+size = Vector2(12, 2)
+
 [node name="SleepWalker" type="CharacterBody2D"]
 script = ExtResource("1_1tg3j")
 
@@ -52,3 +55,13 @@ frame_progress = 0.844896
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ihf1j")
+
+[node name="Foot" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foot"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_y8vgm")
+
+[connection signal="body_entered" from="Foot" to="." method="_on_foot_area_body_entered"]

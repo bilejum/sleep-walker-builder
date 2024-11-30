@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://l2nij647rrwq" path="res://Scenes/level.tscn" id="1_o3ver"]
 
 [node name="Level1" instance=ExtResource("1_o3ver")]
-level_description = "梦的开始"
+level_description = "别吵，我在梦游"
 
 [node name="Bed" parent="." index="3"]
 position = Vector2(349, 103)
