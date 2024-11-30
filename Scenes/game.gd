@@ -2,7 +2,7 @@ extends Node
 @onready var level_manager: LevelManager = $LevelManager
 
 var preview_block :BlockItem
-
+var game
 func _ready() -> void:
 	#level_manager.load_level(0)
 	pass
@@ -12,3 +12,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#place_block()
 	pass
+
+
+	

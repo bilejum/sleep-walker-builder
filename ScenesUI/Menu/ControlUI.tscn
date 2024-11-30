@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8fluhc5dx881"]
+
+[ext_resource type="Script" path="res://ScenesUI/Menu/ControlUI.gd" id="1_hodr7"]
+
+[node name="ControlUI" type="CanvasLayer" groups=["control"]]
+process_mode = 3
+layer = 2
+script = ExtResource("1_hodr7")

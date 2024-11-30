@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d0ycgyww1stoo"]
+[gd_scene load_steps=34 format=3 uid="uid://d0ycgyww1stoo"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_hf636"]
 [ext_resource type="Script" path="res://Scenes/UI/button.gd" id="2_8tk7p"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://cfj5p5pgfnywp" path="res://ScenesUI/Taskbar/taskbar.tscn" id="12_570p8"]
 [ext_resource type="Script" path="res://Scenes/level_manager.gd" id="12_n6svp"]
 [ext_resource type="Texture2D" uid="uid://bst03y15ehpe7" path="res://Assets/UI/TaskBar/tool_hammer.png" id="13_yckrb"]
+[ext_resource type="Theme" path="res://ScenesUI/Menu/theme.tres" id="16_ckbdg"]
+[ext_resource type="Script" path="res://ScenesUI/Menu/main_ui.gd" id="17_crjuh"]
+[ext_resource type="Texture2D" uid="uid://dd6oecopqjmhv" path="res://Assets/UI/banner.png" id="18_2rhy8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oyol4"]
 shader = ExtResource("10_21d6y")
@@ -54,6 +57,13 @@ region = Rect2(321, 161, 13, 14)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nc60j"]
 atlas = SubResource("CompressedTexture2D_vjrjy")
 region = Rect2(321, 177, 13, 15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hbpdl"]
+font_size = 100
+outline_size = 17
+outline_color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tngod"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_hf636")
@@ -170,6 +180,7 @@ texture_pressed = ExtResource("7_tfgma")
 texture_hover = ExtResource("8_fknpp")
 
 [node name="Taskbar" parent="HUD" instance=ExtResource("12_570p8")]
+visible = false
 
 [node name="BoardButton" parent="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton" index="0"]
 visible = false
@@ -279,9 +290,88 @@ layout_mode = 2
 text = "返回建造模式"
 
 [node name="LevelSelectScreen" parent="HUD" instance=ExtResource("11_7sh4k")]
+visible = false
 theme = null
 
+[node name="MainUI" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("16_ckbdg")
+script = ExtResource("17_crjuh")
+
+[node name="ColorRect" type="ColorRect" parent="HUD/MainUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.282353, 0.533333, 0.505882, 1)
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/MainUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_2rhy8")
+
+[node name="Label" type="Label" parent="HUD/MainUI/TextureRect2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -242.5
+offset_top = 56.0
+offset_right = 257.5
+offset_bottom = 193.0
+grow_horizontal = 2
+text = "睡梦建造者"
+label_settings = SubResource("LabelSettings_hbpdl")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MainUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -264.0
+offset_right = 352.0
+offset_bottom = 376.0
+grow_vertical = 0
+
+[node name="start" type="Button" parent="HUD/MainUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tngod")
+text = "开始"
+
+[node name="gameinfo" type="Button" parent="HUD/MainUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tngod")
+text = "操作说明"
+
+[node name="quit" type="Button" parent="HUD/MainUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tngod")
+text = "退出"
+
 [node name="Boot Splash" parent="." instance=ExtResource("11_5d0q2")]
+visible = false
 
 [node name="BlockPlaceManager" type="Node" parent="."]
 script = ExtResource("10_y4g10")
@@ -294,6 +384,9 @@ script = ExtResource("12_n6svp")
 
 [connection signal="pressed" from="HUD/GUI/BlockTray/HBoxContainer/Button" to="HUD/GUI/BlockTray/HBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="HUD/GUI/BlockTray/HBoxContainer/Spring" to="HUD/GUI/BlockTray/HBoxContainer/Spring" method="_on_pressed"]
+[connection signal="pressed" from="HUD/MainUI/VBoxContainer/start" to="HUD/MainUI" method="_on_start_pressed"]
+[connection signal="pressed" from="HUD/MainUI/VBoxContainer/gameinfo" to="HUD/MainUI" method="_on_gameinfo_pressed"]
+[connection signal="pressed" from="HUD/MainUI/VBoxContainer/quit" to="HUD/MainUI" method="_on_quit_pressed"]
 [connection signal="level_loaded" from="LevelManager" to="HUD/Taskbar/Taskbar/LevelInfo" method="_on_level_manager_level_loaded"]
 [connection signal="level_loaded" from="LevelManager" to="LevelManager" method="_on_level_loaded"]
 

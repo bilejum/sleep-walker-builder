@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw24cwgg4cejw"]
+[gd_scene load_steps=4 format=3 uid="uid://cw24cwgg4cejw"]
 
 [ext_resource type="Theme" uid="uid://cdh68r2entt7h" path="res://ScenesUI/gui/theme.res" id="1_8s6g3"]
 [ext_resource type="Script" path="res://ScenesUI/gui/level_select_screen.gd" id="2_1jfsw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0756j"]
+font_size = 33
+outline_size = 8
+outline_color = Color(0.206914, 0.206914, 0.206914, 1)
+shadow_size = 14
+shadow_offset = Vector2(2.9, 3.305)
 
 [node name="LevelSelectScreen" type="Control"]
 layout_mode = 3
@@ -41,7 +48,9 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Select Level"
+theme_override_font_sizes/font_size = 41
+text = "选择关卡"
+label_settings = SubResource("LabelSettings_0756j")
 horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
