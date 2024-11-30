@@ -112,7 +112,7 @@ rotation = 0.578312
 scale = Vector2(0.0422454, 0.0521627)
 sprite_frames = SubResource("SpriteFrames_h40wd")
 autoplay = "default"
-frame_progress = 0.896896
+frame_progress = 0.406081
 
 [node name="Foot" type="Area2D" parent="."]
 collision_layer = 0
