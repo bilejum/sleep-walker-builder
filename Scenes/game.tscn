@@ -175,14 +175,6 @@ title_text = "长板"
 [node name="SpringButton" parent="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton" index="1"]
 title_text = "弹簧"
 
-[node name="DateText" parent="HUD/Taskbar/Taskbar/LevelInfo" index="1"]
-offset_left = 3.0
-offset_top = 27.0
-offset_right = 3.0
-offset_bottom = 8.0
-fit_content = true
-scroll_active = false
-
 [node name="TrashcanButton" parent="HUD/Taskbar/Taskbar/HBoxContainer/Trashcan" index="0"]
 shortcut = SubResource("Shortcut_lmxg6")
 

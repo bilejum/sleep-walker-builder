@@ -7,6 +7,11 @@ var was_on_floor :=false
 var screen_bound_y
 var level_manager:LevelManager
 var game
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+@export var flash_time: float = 0.1  # 每次闪烁的间隔时间
+@export var flash_count: int = 5    # 闪烁的次数
+var is_invincible = false           # 是否无敌状态
 func _ready() -> void:
 	game = owner.get_parent().get_parent()
 	level_manager = owner.get_parent()
@@ -37,9 +42,28 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if position.y > screen_bound_y:
-		var transition_background = game.get_node('HUD/Transition_Background')
-		if not transition_background.transiting:
-			transition_background.transition()
-			transition_background.transiting = true
-		#pass
+		player_restart()
 	move_and_slide()
+
+func player_restart():
+	var transition_background = game.get_node('HUD/Transition_Background')
+	if not transition_background.transiting:
+		transition_background.transition()
+		transition_background.transiting = true
+		
+		
+func hit():
+	if is_invincible:
+		return  # 如果角色是无敌状态，则忽略受击
+	is_invincible = true
+	start_flash_animation()
+
+func start_flash_animation():
+	var tween = get_tree().create_tween()
+	for i in range(flash_count):
+		tween.tween_property(animated_sprite_2d,"visible", false, flash_time)
+		tween.tween_property(animated_sprite_2d, "visible", true, flash_time)
+	tween.tween_callback(Callable(self, "_on_flash_animation_done"))
+
+func _on_flash_animation_done():
+	is_invincible = false  # 恢复非无敌状态

@@ -23,7 +23,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	place_collided = true
 	if can_function:
 		if body is CharacterBody2D:
-			body.velocity = Vector2(100* body.go_back,-500)
+			body.velocity = Vector2(150* body.go_back,-350)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:

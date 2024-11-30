@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://d1hm4ccib4cod"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Ghost/ghost.gd" id="1_84lhe"]
+[ext_resource type="Texture2D" uid="uid://c4eb5ks2w4nj1" path="res://Assets/Enemys/Ghost/gosth.png" id="1_pwpff"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejiai"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oalrk"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(25, 25, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq7dd"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(25, 50, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gka6e"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(25, 75, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jgvy"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(50, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug58k"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(50, 25, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gaykt"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(50, 50, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohl7d"]
+atlas = ExtResource("1_pwpff")
+region = Rect2(50, 75, 25, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjipa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejiai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oalrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq7dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gka6e")
+}],
+"loop": true,
+"name": &"move_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jgvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug58k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gaykt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohl7d")
+}],
+"loop": true,
+"name": &"move_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8lv6"]
+size = Vector2(9, 15)
+
+[node name="Ghost" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_84lhe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mjipa")
+animation = &"move_up"
+autoplay = "move_up"
+frame_progress = 0.0969468
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b8lv6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_b8lv6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
