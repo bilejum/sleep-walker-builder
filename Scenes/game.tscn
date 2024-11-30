@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d0ycgyww1stoo"]
+[gd_scene load_steps=29 format=3 uid="uid://d0ycgyww1stoo"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_hf636"]
 [ext_resource type="Script" path="res://Scenes/UI/button.gd" id="2_8tk7p"]
@@ -11,8 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://svntihci1ntf" path="res://Assets/UI/ui_button.png" id="9_erqoy"]
 [ext_resource type="Shader" path="res://Resources/Shaders/diamond_transition.gdshader" id="10_21d6y"]
 [ext_resource type="Script" path="res://Scenes/block_place_manager.gd" id="10_y4g10"]
+[ext_resource type="PackedScene" uid="uid://bwyybu5i3kid" path="res://ScenesUI/Boot Splash/boot_splash.tscn" id="11_5d0q2"]
+[ext_resource type="PackedScene" uid="uid://cw24cwgg4cejw" path="res://ScenesUI/gui/level_select_screen.tscn" id="11_7sh4k"]
 [ext_resource type="Script" path="res://Scenes/UI/transition_background.gd" id="11_oaym3"]
 [ext_resource type="AudioStream" uid="uid://d0guiofpy3ris" path="res://Assets/Audios/Windows XP错误(Error de Windows _爱给网_aigei_com.mp3" id="11_tfcaj"]
+[ext_resource type="Texture2D" uid="uid://ss325bcxt8yo" path="res://Assets/UI/TaskBar/fastForward.png" id="12_4nyrf"]
 [ext_resource type="PackedScene" uid="uid://cfj5p5pgfnywp" path="res://ScenesUI/Taskbar/taskbar.tscn" id="12_570p8"]
 [ext_resource type="Script" path="res://Scenes/level_manager.gd" id="12_n6svp"]
 [ext_resource type="Texture2D" uid="uid://bst03y15ehpe7" path="res://Assets/UI/TaskBar/tool_hammer.png" id="13_yckrb"]
@@ -178,6 +181,9 @@ title_text = "弹簧"
 [node name="TrashcanButton" parent="HUD/Taskbar/Taskbar/HBoxContainer/Trashcan" index="0"]
 shortcut = SubResource("Shortcut_lmxg6")
 
+[node name="TextureRect" parent="HUD/Taskbar/Taskbar/HBoxContainer/SpeedUp" index="1"]
+texture = ExtResource("12_4nyrf")
+
 [node name="TipsTray" type="MarginContainer" parent="HUD/Taskbar/Taskbar" index="3"]
 layout_mode = 1
 anchors_preset = 3
@@ -272,6 +278,11 @@ expand_mode = 3
 layout_mode = 2
 text = "返回建造模式"
 
+[node name="LevelSelectScreen" parent="HUD" instance=ExtResource("11_7sh4k")]
+theme = null
+
+[node name="Boot Splash" parent="." instance=ExtResource("11_5d0q2")]
+
 [node name="BlockPlaceManager" type="Node" parent="."]
 script = ExtResource("10_y4g10")
 
@@ -289,3 +300,4 @@ script = ExtResource("12_n6svp")
 [editable path="HUD/Taskbar"]
 [editable path="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/BoardButton"]
 [editable path="HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/SpringButton"]
+[editable path="HUD/LevelSelectScreen"]

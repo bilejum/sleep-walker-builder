@@ -17,6 +17,7 @@ var level_description : String
 @onready var board_button: Panel = $"../HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/BoardButton"
 @onready var spring_button: Panel = $"../HUD/Taskbar/StartMenuAnchor/Start Menu/BlockItemButton/SpringButton"
 @onready var level_info: Control = $"../HUD/Taskbar/Taskbar/LevelInfo"
+@onready var transition_background: ColorRect = $"../HUD/Transition_Background"
 
 # 关卡物品
 var board_num :int
@@ -70,7 +71,13 @@ func restart_level_super():
 		current_level_ins.queue_free()
 		clear_all_block()
 		load_level(current_level_index,false)
-		
+
+func clear_level():
+	if current_level_ins:
+		current_level_ins.queue_free()
+		clear_all_block()
+
+
 # 删除所有场景方块
 func clear_all_block():
 	var block_in_this_level_list = block_place_manager.get_children()
@@ -78,7 +85,10 @@ func clear_all_block():
 		if node is BlockItem:
 			node.queue_free()
 
-
+func level_transition():
+	transition_background.transition()
+	return transition_background.transition_complete
+	
 func _on_level_loaded() -> void:
 	board_button.num = board_num
 	spring_button.num = spring_num
