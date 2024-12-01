@@ -34,7 +34,7 @@ func transition():
 		0, 
 		0.7
 	).from(1.0).set_trans(Tween.TRANS_SINE)
-	level_manager.restart_level()
+	#level_manager.restart_level()
 	await tween.finished
 	transiting = false
 	transition_complete = true

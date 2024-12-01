@@ -1,6 +1,5 @@
-[gd_scene load_steps=47 format=3 uid="uid://d0ycgyww1stoo"]
+[gd_scene load_steps=49 format=3 uid="uid://d0ycgyww1stoo"]
 
-[ext_resource type="Script" path="res://Scenes/game.gd" id="1_hf636"]
 [ext_resource type="Script" path="res://Scenes/UI/button.gd" id="2_8tk7p"]
 [ext_resource type="Script" path="res://Scenes/UI/spring.gd" id="3_7oe0y"]
 [ext_resource type="Texture2D" uid="uid://bpunr263y618q" path="res://Assets/UI/start.png" id="4_b5xnk"]
@@ -26,6 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://oseeyy73pcbl" path="res://Assets/STAR.png" id="20_5oovo"]
 [ext_resource type="Texture2D" uid="uid://c1yckuqe7an5j" path="res://Assets/nightcap.png" id="21_xblc8"]
 [ext_resource type="Texture2D" uid="uid://crjbpcro2kcqn" path="res://Assets/sleep_zzz-Sheet.png" id="22_6h2oh"]
+[ext_resource type="AudioStream" uid="uid://b1iaawb5dtcg1" path="res://Assets/Audios/方块石消失(Blocs_Stonedisappear)_爱给网_aigei_com.mp3" id="25_7oy0s"]
+[ext_resource type="AudioStream" uid="uid://y21cs4we3t5o" path="res://Assets/Audios/yaonanqu.mp3" id="27_70vop"]
+[ext_resource type="Script" path="res://Scenes/audio_stream_player.gd" id="27_l27se"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oyol4"]
 shader = ExtResource("10_21d6y")
@@ -112,6 +114,45 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="Animation" id="Animation_16x5m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 256)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/Sprite2D3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainUI/Sprite2D2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_kx0hv"]
 resource_name = "swing"
 length = 2.0
@@ -153,45 +194,6 @@ tracks/2/keys = {
 "values": [Color(0.452586, 0.452586, 0.452586, 1), Color(1, 1, 1, 1), Color(0.45098, 0.45098, 0.45098, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_16x5m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainUI/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(96, 256)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainUI/Sprite2D3:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MainUI/Sprite2D2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xnmfc"]
 _data = {
 "RESET": SubResource("Animation_16x5m"),
@@ -199,7 +201,6 @@ _data = {
 }
 
 [node name="Game" type="Node"]
-script = ExtResource("1_hf636")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -542,8 +543,20 @@ script = ExtResource("10_y4g10")
 [node name="PlaceCollidedAudio" type="AudioStreamPlayer" parent="BlockPlaceManager"]
 stream = ExtResource("11_tfcaj")
 
+[node name="PlaceBlock" type="AudioStreamPlayer" parent="BlockPlaceManager"]
+stream = ExtResource("25_7oy0s")
+
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("12_n6svp")
+
+[node name="AudioManager" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("27_70vop")
+volume_db = 20.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("27_l27se")
 
 [connection signal="pressed" from="HUD/GUI/BlockTray/HBoxContainer/Button" to="HUD/GUI/BlockTray/HBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="HUD/GUI/BlockTray/HBoxContainer/Spring" to="HUD/GUI/BlockTray/HBoxContainer/Spring" method="_on_pressed"]

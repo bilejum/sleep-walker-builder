@@ -42,7 +42,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			preview_block.can_function = true
 			
 			preview_block.delete_item_num()
-			
+			$PlaceBlock.play()
 			self.preview_block = null
 			preview_block = null
 		else:

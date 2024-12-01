@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	
 	if position.y > screen_bound_y:
 		player_restart()
-		#level_manager.restart_level()
+
 	move_and_slide()
 
 func player_restart():
@@ -51,12 +51,14 @@ func player_restart():
 	if not transition_background.transiting:
 		transition_background.transition()
 		transition_background.transiting = true
+		level_manager.restart_level()
 		
 
 func _on_foot_area_body_entered(body):
 	if body.is_in_group("Monsters"):  # 检测是否是怪物
 		body.queue_free()  # 删除怪物
 		jump_on_enemy()    # 触发玩家弹跳
+		$Foot/MonsterDie.play()
 
 func jump_on_enemy():
 	velocity.y = -300  # 让玩家向上弹跳

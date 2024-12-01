@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjgjad8wi8r0s"]
+[gd_scene load_steps=19 format=3 uid="uid://cjgjad8wi8r0s"]
 
 [ext_resource type="Script" path="res://Scenes/sleep_walker.gd" id="1_1tg3j"]
 [ext_resource type="Texture2D" uid="uid://bas6rj1jq7d0q" path="res://Assets/GameItems/Character.png" id="1_56c0g"]
 [ext_resource type="Texture2D" uid="uid://c1yckuqe7an5j" path="res://Assets/nightcap.png" id="3_ck7ip"]
 [ext_resource type="Texture2D" uid="uid://crjbpcro2kcqn" path="res://Assets/sleep_zzz-Sheet.png" id="4_lscug"]
+[ext_resource type="AudioStream" uid="uid://degsqht5ddull" path="res://Assets/Audios/西瓜猫死亡_爱给网_aigei_com.mp3" id="5_di5bh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36rep"]
 atlas = ExtResource("1_56c0g")
@@ -121,5 +122,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foot"]
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_y8vgm")
+
+[node name="MonsterDie" type="AudioStreamPlayer" parent="Foot"]
+stream = ExtResource("5_di5bh")
 
 [connection signal="body_entered" from="Foot" to="." method="_on_foot_area_body_entered"]

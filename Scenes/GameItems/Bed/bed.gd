@@ -9,7 +9,7 @@ signal level_complete
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		sleep_audio.play()
+		sleep_audio.fade_in()
 		animated_sprite_2d.play('man_in_bed')
 		sleep_zzz.visible = true
 		var tween = get_tree().create_tween()
@@ -21,6 +21,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.velocity.x = 0
 		body.queue_free()
 		tween.tween_callback(level_complete_func).set_delay(3)
+		get_tree().current_scene.get_node('AudioManager/AudioStreamPlayer').fade_out()
 		# 游戏胜利，触发弹窗，选择下一关
 func level_complete_func():
 		level_complete.emit()

@@ -25,3 +25,4 @@ position = Vector2(72, 225)
 scale = Vector2(-1, 1)
 move_left = true
 speed = 20
+go_back = 1

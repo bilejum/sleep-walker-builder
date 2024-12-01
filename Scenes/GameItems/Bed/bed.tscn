@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxewhajbemxxv"]
+[gd_scene load_steps=15 format=3 uid="uid://dxewhajbemxxv"]
 
 [ext_resource type="Script" path="res://Scenes/GameItems/Bed/bed.gd" id="1_a31e8"]
 [ext_resource type="Texture2D" uid="uid://c4mif27gnndcy" path="res://Assets/GameItems/像素.png" id="2_bneyk"]
 [ext_resource type="AudioStream" uid="uid://deqjoust645q8" path="res://Assets/Audios/摇篮曲调_爱给网_aigei_com.mp3" id="3_1ofkv"]
 [ext_resource type="Texture2D" uid="uid://cm4uibgrusef0" path="res://Assets/MAN_IN_BED.png" id="3_4wjyl"]
 [ext_resource type="Texture2D" uid="uid://crjbpcro2kcqn" path="res://Assets/sleep_zzz-Sheet.png" id="4_nosah"]
+[ext_resource type="Script" path="res://Scenes/GameItems/Bed/sleep_audio.gd" id="6_6olui"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5f5x2"]
 animations = [{
@@ -98,5 +99,7 @@ shape = SubResource("RectangleShape2D_sixlt")
 
 [node name="SleepAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1ofkv")
+volume_db = -30.0
+script = ExtResource("6_6olui")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
